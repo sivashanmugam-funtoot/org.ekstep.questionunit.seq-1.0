@@ -1,17 +1,17 @@
 /**
  *
- * Plugin to create mcq question
+ * Plugin to create sequencial question
  * @extends org.ekstep.contenteditor.questionUnitPlugin
- * @author Jagadish P <jagadish.pujari@tarento.com>
+ * @author Sivashanmugam Kannan <sivashanmugam.kannan@funtoot.com>
  */
-org.ekstep.questionunitMTF = {};
-org.ekstep.questionunitMTF.EditorPlugin = org.ekstep.contenteditor.questionUnitPlugin.extend({
+org.ekstep.questionunitSEQ = {};
+org.ekstep.questionunitSEQ.EditorPlugin = org.ekstep.contenteditor.questionUnitPlugin.extend({
   initialize: function () {
     this._super();
-    var templatePath = ecEditor.resolvePluginResource(this.manifest.id, this.manifest.ver, 'editor/templates/mtf-template.html');
-    var controllerPath = ecEditor.resolvePluginResource(this.manifest.id, this.manifest.ver, 'editor/controllers/mtf-controller.js');
+    var templatePath = ecEditor.resolvePluginResource(this.manifest.id, this.manifest.ver, this.manifest.templates[0].editor.templateURL);
+    var controllerPath = ecEditor.resolvePluginResource(this.manifest.id, this.manifest.ver, this.manifest.templates[0].editor.controllerURL);
     ecEditor.getService(ServiceConstants.POPUP_SERVICE).loadNgModules(templatePath, controllerPath);
   }
 });
 
-//# sourceURL=mtfpluginEditorPlugin.js
+//# sourceURL=seq_editor_plugin.js

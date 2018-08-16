@@ -33,6 +33,15 @@
         "src": "editor/styles/style.css"
       }
     ],
+    "menu": [],
+    "init-data": {
+      "type": "rect",
+      "x": 10,
+      "y": 2,
+      "w": 80,
+      "h": 80,
+      "fill": "#DCDCDC"
+    },
     "configManifest": [
       {}
     ],
@@ -47,7 +56,7 @@
       "thumbnail": "editor/assets/sequencial-preview.png",
       "title": "Arrange in Sequence",
       "disc": "",
-      "category": "SEQ",
+      "category": "MTF",
       "editor": {
         "templateURL": "editor/templates/seq-template.html",
         "controllerURL": "editor/controllers/seq-controller.js",
