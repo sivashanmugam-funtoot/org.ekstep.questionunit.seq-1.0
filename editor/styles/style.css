@@ -67,7 +67,7 @@
   margin-bottom: 2%;
 }
 
-.mtfFullGrid {
+.seqFullGrid {
   max-height: 80vh;
   width: 100%;
   margin-left: 0%;
@@ -178,72 +178,11 @@ i.large.icon.delete-icon{
   display: block;
   width: 70%;
 }
-.qc-mtf-distractor{
-  text-align: center;
-}
 .instructions{
   font-size: 1.1rem;
 }
-td.mtf-pair-td{
-  border-left: 0px none !important;
-  border-right: 0px none;
-  width: 50%;
-}
-.delete-pair-row-LHS{
-  margin-top: 2%;
-}
-.delete-pair-row-RHS{
-  margin-top: 2%;
-  float: right;
-     visibility: hidden;
-}
 
-td.mtf-pair-destractor-td{
- border-left: 0px none !important;
-  border-right: 0px none;
-}
 .ck-error{
   border: 1px solid red;
 }
-/* options */
 
-.mtf-options .question-selected-media-container {
-  height:60px;
-}
-
-.mtf-options .selected-media-container {
- margin-left:2%;
-}
-
-.mtf-options .selected-image-container {
- float: left;
- margin-right: 2%;
- width: 46%;
-}
-
-.mtf-options .selected-audio-container {
- float: left;
- margin-right: 2%;
- width: 46%;
-}
-
-.mtf-options .imgWidth{
- width:100%;
-}
-
-.mtf-options .auto-play-container {
- text-align: right;
-}
-
-.mtf-options .audio-container {
- width: 80%;
-}
-
-.mtf-options .selected-audio {
- max-width: 100%;
- display:none;
-}
-
-.mtf-options .delete-media-container {
- width: 20%;
-}
