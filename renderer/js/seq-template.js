@@ -7,8 +7,9 @@ SEQController.constant = {
 };
 
 /**
- * enables accessing plugin instance inside SEQController
- * @memberof org.ekstep.questionun  it.mtf.mtftemplate
+ * intializes renderer template html controller and provides renderer plugin data with controller, 
+ * @param {Object} pluginInstance
+ * @memberof org.ekstep.questionunit.seq.seq-template
  */
 SEQController.initTemplate = function (pluginInstance) {
   SEQController.pluginInstance = pluginInstance;
@@ -16,28 +17,36 @@ SEQController.initTemplate = function (pluginInstance) {
   SEQController.bgLeftCircleTop = _.random(-6, 6) * 10;
 };
 
-
+/**
+ * returns complete sequence plugin renderer html, 
+ * @param {String} selectedLayout selected layout from editor
+ * @param {Object} availableLayout provides list of layouts
+ * @memberof org.ekstep.questionunit.seq.seq-template
+ */
 SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
-  var wrapperStart = '<div onload="SEQController.onDomReady()" class="sequencing-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
-  var wrapperEnd = '</div>';
+  var wrapperStart = '<div  class="sequencing-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
+  var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
   var getLayout;
   if (availableLayout.horizontal == selectedLayout) {
     getLayout = SEQController.getOptionLayout('horizontal');
   } else {
     getLayout = SEQController.getOptionLayout('vertical');
   }
-
   return wrapperStart + SEQController.getQuestionStemTemplate() + getLayout + wrapperEnd;
 }
 
+/**
+ * returns sequence question html , 
+ * @memberof org.ekstep.questionunit.seq.seq-template
+ */
 SEQController.getQuestionStemTemplate = function () {
   return '\
   <div class="question-container">\
       <div class="hiding-container">\
           <div class="expand-container">\
-          <%= question.data.text %>\
+          <%= question.data.question.text %>\
           </div>\
       </div>\
       <div class="expand-button" onclick="SEQController.toggleQuestionText()">\
@@ -46,12 +55,18 @@ SEQController.getQuestionStemTemplate = function () {
   </div>\
   ';
 }
+
+/**
+ * returns sequence option html layout based it's type, 
+ * @param {String} type either `horizotnal` or `vertical`
+ * @memberof org.ekstep.questionunit.seq.seq-template
+ */
 SEQController.getOptionLayout = function (type) {
   return '\
   <div class="option-container ' + type + '">' + '\
       <div class="option-block-container">\
       <% _.each(question.data.options,function(val,key){ %>\
-          <div class="option-block">\
+          <div data-seq-order=<%= val.sequenceOrder %> class="option-block">\
             <span><%= val.text %></span>\
           </div>\
       <% }) %>\
@@ -59,64 +74,59 @@ SEQController.getOptionLayout = function (type) {
   </div>';
 }
 
+/**
+ * checks whether question text is overflowing the container height, 
+ * @memberof org.ekstep.questionunit.seq.seq-template
+ */
 SEQController.isQuestionTextOverflow = function () {
   setTimeout(function () {
     if ($('.hiding-container').height() > $('.expand-container').height()) {
-        $('.expand-button').css('display', 'none');
+      $('.expand-button').css('display', 'none');
     } else {
-        $('.expand-button').css('display', 'block');
+      $('.expand-button').css('display', 'block');
     }
   }, 1000)
 }
-
+/**
+ * handles expand button click event when question text is overflowing the container height, 
+ * @memberof org.ekstep.questionunit.seq.seq-template
+ */
 SEQController.toggleQuestionText = function () {
-  if($('.hiding-container').hasClass('expanded')){
+  if ($('.hiding-container').hasClass('expanded')) {
     $('.hiding-container').css('height', '50%');
     $('.hiding-container').removeClass('expanded')
     $(".expand-button img").toggleClass('flip');
     $('.hiding-container').css('padding-bottom', '0px');
     $('.expand-button').css('bottom', '5%');
-} else {
+  } else {
     var expandButtonBottom = parseFloat($('.expand-button').css('bottom'));
     $('.hiding-container').addClass('expanded')
     $('.hiding-container').css('height', 'auto');
     $(".expand-button img").toggleClass('flip');
-    $('.hiding-container').css('padding-bottom', $(".expand-button").height()+'px');
+    $('.hiding-container').css('padding-bottom', $(".expand-button").height() + 'px');
     expandButtonBottom = expandButtonBottom - ($('.hiding-container').height() - $('.question-container').height());
-    $('.expand-button').css('bottom', expandButtonBottom+'px')
+    $('.expand-button').css('bottom', expandButtonBottom + 'px')
+  }
 }
-}
-
+/**
+ * upon document ready will be invoked
+ * @memberof org.ekstep.questionunit.seq.seq-template
+ */
 SEQController.onDomReady = function () {
   SEQController.isQuestionTextOverflow();
-    $(document).ready(function () {
-        $(".option-block-container").sortable();
-        $(".option-block-container").disableSelection();
-    })
+  $(document).ready(function () {
+    $(".option-block-container").sortable();
+    $(".option-block-container").disableSelection();
+  })
 }
 
 /**
  * image will be shown in popup
  * @memberof org.ekstep.questionunit.mtf.mtftemplate
  */
-SEQController.showImageModel = function (event, imageSrc) {
-  if (imageSrc) {
-    var modelTemplate = "<div class='popup' id='image-model-popup' onclick='SEQController.hideImageModel()'><div class='popup-overlay' onclick='SEQController.hideImageModel()'></div> \
-  <div class='popup-full-body'> \
-  <div class='font-lato assess-popup assess-goodjob-popup'> \
-    <img class='qc-question-fullimage' src=<%= src %> /> \
-    <div onclick='SEQController.hideImageModel()' class='qc-popup-close-button'>&times;</div> \
-  </div></div>";
-    var template = _.template(modelTemplate);
-    var templateData = template({
-      src: imageSrc
-    })
-    $(SEQController.constant.qsSEQElement).append(templateData);
-  }
-}
 
 SEQController.hideImageModel = function () {
   $("#image-model-popup").remove();
 }
 
-//# sourceURL=SEQController.js
+//# sourceURL=seq-renderer-template-controller.js

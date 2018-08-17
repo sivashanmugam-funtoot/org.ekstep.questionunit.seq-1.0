@@ -23,6 +23,9 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
   preQuestionShow: function (event) {
     this._super(event);
     this._question.template = SEQController.getQuestionTemplate(this._question.config.layout, this._constant);
+    _.each(this._question.data.options, function(option,index){
+      option.sequenceOrder = index + 1;
+    })
     this._question.data.options = _.shuffle(this._question.data.options);
   },
   postQuestionShow: function (event) {
@@ -34,9 +37,9 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
     var correctAnswer = true;
     var correctAnswersCount = 0;
     var telemetryValues = [];
-    var totalLHS = instance._question.data.option.optionsLHS.length;
+    var totalOptions = instance._question.data.options.length;
     instance._selectedRHS = [];
-    $('.rhs-block').each(function(expectedOptionMapIndex, elem){
+    $('.option-block').each(function(expectedOptionMapIndex, elem){
       var telObj = {
         'LHS':[],
         'RHS':[]

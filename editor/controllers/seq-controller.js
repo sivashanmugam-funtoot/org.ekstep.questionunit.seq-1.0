@@ -15,6 +15,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
     'question': {},
     'options': []
   };
+  $scope.seqFormData.question = angular.copy(generalDataObj);
   $scope.questionMedia = {};
   $scope.optionsMedia = {
     'image': [],
@@ -61,8 +62,8 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
      * @memberof org.ekstep.questionunit.seq.seq-controller
      */
     $scope.seqPluginInstance = org.ekstep.pluginframework.pluginManager.getPluginManifest("org.ekstep.questionunit.mtf");
-    EventBus.listeners['org.ekstep.questionunit.seq:validateform'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.seq:validateform', function (event, callback) {
+    EventBus.listeners['org.ekstep.questionunit.mtf:validateform'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.mtf:validateform', function (event, callback) {
       var validationRes = $scope.formValidation();
       callback(validationRes.isValid, validationRes.formData);
     }, $scope);
@@ -71,8 +72,8 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
      * @event org.ekstep.questionunit.seq:editquestion
      * @memberof org.ekstep.questionunit.seq.seq-controller
      */
-    EventBus.listeners['org.ekstep.questionunit.seq:editquestion'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.seq:editquestion', $scope.editSEQQuestion, $scope);
+    EventBus.listeners['org.ekstep.questionunit.mtf:editquestion'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.mtf:editquestion', $scope.editSEQQuestion, $scope);
     ecEditor.dispatchEvent("org.ekstep.questionunit:ready");
   }
   /**
@@ -92,10 +93,12 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
    * @memberof org.ekstep.questionunit.seq
    */
   $scope.addOption = function (index) {
-    if(index){
-      $scope.seqFormData.options[index] = angular.copy(generalDataObj);
-    }else {
-      $scope.seqFormData.options.push(angular.copy(generalDataObj));
+    if($scope.seqFormData.options.length < 4){
+      if(index){
+        $scope.seqFormData.options[index] = angular.copy(generalDataObj);
+      }else {
+        $scope.seqFormData.options.push(angular.copy(generalDataObj));
+      }
     }
   }
   /**
