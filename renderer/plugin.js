@@ -38,36 +38,31 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
     var correctAnswersCount = 0;
     var telemetryValues = [];
     var totalOptions = instance._question.data.options.length;
-    instance._selectedRHS = [];
-    $('.option-block').each(function(expectedOptionMapIndex, elem){
+    $('.option-block').each(function(actualSeqMapIndex, elem){
       var telObj = {
-        'LHS':[],
-        'RHS':[]
+        'SEQ':[]
       };
-      var selectedOptionMapIndex = parseInt($(elem).data('mapindex')) - 1;
-      telObj['LHS'][expectedOptionMapIndex] = instance._question.data.option.optionsLHS[expectedOptionMapIndex];
-      telObj['RHS'][selectedOptionMapIndex] = instance._question.data.option.optionsRHS[selectedOptionMapIndex];
+      var selectedSeqOrder = parseInt($(elem).data('seqorder')) - 1;
+      telObj['SEQ'][actualSeqMapIndex] = instance._question.data.options[actualSeqMapIndex];
       telemetryValues.push(telObj);
-      instance._selectedRHS.push(instance._question.data.option.optionsRHS[selectedOptionMapIndex]);
-      if(selectedOptionMapIndex == expectedOptionMapIndex){
+      if(selectedSeqOrder == actualSeqMapIndex){
         correctAnswersCount++;
       } else {
         correctAnswer = false;
       }
     })
-    var partialScore = (correctAnswersCount / totalLHS) * this._question.config.max_score;
+    var partialScore = (correctAnswersCount / totalOptions) * this._question.config.max_score;
     var result = {
       eval: correctAnswer,
       state: {
         val: {
-          "lhs": this._question.data.option.optionsRHS,
-          "rhs": instance._selectedRHS
+          "seq": this._question.data.options
         }
       },
       score: partialScore,
       values: telemetryValues,
       noOfCorrectAns: correctAnswersCount,
-      totalAns: totalLHS
+      totalAns: totalOptions
     };
     if (_.isFunction(callback)) {
       callback(result);
