@@ -1,6 +1,6 @@
 /**
  *
- * Question Unit plugin to render a MTF question
+ * Question Unit plugin to render a SEQ question
  * @class org.ekstep.questionunit.seq
  * @extends org.ekstep.contentrenderer.questionUnitPlugin
  * @author Sivashanmugam Kannan <sivashanmugam.kannan@funtoot.com>
@@ -73,4 +73,4 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
     QSTelemetryLogger.logEvent(QSTelemetryLogger.EVENT_TYPES.RESPONSE, {"type": "INPUT", "values": data});
   }
 });
-//# sourceURL=questionunitMTFPlugin.js
+//# sourceURL=questionunit.seq.renderer.plugin.js

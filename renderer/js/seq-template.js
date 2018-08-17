@@ -129,4 +129,4 @@ SEQController.hideImageModel = function () {
   $("#image-model-popup").remove();
 }
 
-//# sourceURL=seq-renderer-template-controller.js
+//# sourceURL=questionunit.seq.renderer.seq-template-controller.js

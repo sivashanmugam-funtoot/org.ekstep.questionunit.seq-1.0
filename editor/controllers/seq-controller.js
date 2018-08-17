@@ -235,4 +235,4 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
     }
   }
 }]);
-//# sourceURL=seq-controller.js
+//# sourceURL=questionunit.seq.editor.controller.js
