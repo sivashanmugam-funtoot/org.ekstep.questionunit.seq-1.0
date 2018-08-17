@@ -23,7 +23,7 @@
 
 .sequencing-content-container .question-container {
   padding: 1.875% 0%;
-  height: 15.8333333333%;
+  height: 17.8333333333%;
   background-color: #FFFFFF;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
   position: relative;
@@ -107,7 +107,7 @@
 .sequencing-content-container .option-container.horizontal .option-block-container .option-block {
   cursor: move;
   width: 23.9224137931%;
-  height: 51.6279069767%;
+  height: 30.833333vh;
   margin-right: 1.25%;
   border-radius: 4px;
   background-color: #FFFFFF;

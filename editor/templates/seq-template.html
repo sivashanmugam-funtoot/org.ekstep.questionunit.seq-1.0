@@ -48,18 +48,17 @@
                             <div class="ui segments inner-segment">
                                 <div class="ui segment">
                                     <div class="ui grid">
-                                        <div class="eleven wide column">
+                                        <div class="ten wide column">
                                             <div class="form-group segment textBoxDiv">
                                                 <input type="text" class="form-control textbox" placeholder="Enter answer" ng-model="seqFormData.options[key].text" maxlength="120"
                                                 />
                                             </div>
                                         </div>
-                                        <div class="one wide column text-len">
+                                        <div class="two wide column text-len">
                                             <span class="maxLengthText">{{value.text.length}}
-                                                <span class="length-divider">/</span>120</span>
-                                        </div>
-                                        <div class="twelve wide column">
-                                            <selected-media-container media-callbacks="callbacks" class="row" formdata="seqFormData.options[key]" media-type='op' media-index='{{key}}'></selected-media-container>
+                                                <span class="length-divider">/</span>
+                                                120
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

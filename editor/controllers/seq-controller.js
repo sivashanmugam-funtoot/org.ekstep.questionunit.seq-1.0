@@ -61,8 +61,8 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
      * @memberof org.ekstep.questionunit.seq.seq-controller
      */
     $scope.seqPluginInstance = org.ekstep.pluginframework.pluginManager.getPluginManifest("org.ekstep.questionunit.mtf");
-    EventBus.listeners['org.ekstep.questionunit.mtf:validateform'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.mtf:validateform', function (event, callback) {
+    EventBus.listeners['org.ekstep.questionunit.seq:validateform'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.seq:validateform', function (event, callback) {
       var validationRes = $scope.formValidation();
       callback(validationRes.isValid, validationRes.formData);
     }, $scope);
@@ -71,17 +71,17 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
      * @event org.ekstep.questionunit.seq:editquestion
      * @memberof org.ekstep.questionunit.seq.seq-controller
      */
-    EventBus.listeners['org.ekstep.questionunit.mtf:editquestion'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.mtf:editquestion', $scope.editMtfQuestion, $scope);
+    EventBus.listeners['org.ekstep.questionunit.seq:editquestion'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.seq:editquestion', $scope.editSEQQuestion, $scope);
     ecEditor.dispatchEvent("org.ekstep.questionunit:ready");
   }
   /**
    * for edit flow
-   * @memberof org.ekstep.questionunit.mtf
+   * @memberof org.ekstep.questionunit.seq
    * @param {event} event data.
    * @param {question} data data.
    */
-  $scope.editMtfQuestion = function (event, data) {
+  $scope.editSEQQuestion = function (event, data) {
     var qdata = data.data;
     $scope.seqFormData.question = qdata.question;
     $scope.seqFormData.option = qdata.option;
@@ -100,7 +100,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
   }
   /**
    * check form validation
-   * @memberof org.ekstep.questionunit.mtf.horizontal_controller
+   * @memberof org.ekstep.questionunit.seq.seq-controller
    * @returns {Object} question data.
    */
   $scope.formValidation = function () {
@@ -140,7 +140,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
   }
   /**
    * delete the pair in seq
-   * @memberof org.ekstep.questionunit.mtf.seq-controller
+   * @memberof org.ekstep.questionunit.seq.seq-controller
    * @param {Integer} id data.
    */
   $scope.deleteOption = function (id) {

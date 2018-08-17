@@ -74,6 +74,10 @@
       },
       {
         "type": "js",
+        "src": "renderer/js/jquery-ui.min.js"
+      },
+      {
+        "type": "js",
         "src": "renderer/js/seq-template.js"
       }
     ]

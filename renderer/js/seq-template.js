@@ -48,11 +48,11 @@ SEQController.getQuestionStemTemplate = function () {
 }
 SEQController.getOptionLayout = function (type) {
   return '\
-  <div class="option-container " ' + type + '"` \
+  <div class="option-container ' + type + '">' + '\
       <div class="option-block-container">\
       <% _.each(question.data.options,function(val,key){ %>\
           <div class="option-block">\
-            <%= val.text %>\
+            <span><%= val.text %></span>\
           </div>\
       <% }) %>\
       </div>\
@@ -61,13 +61,11 @@ SEQController.getOptionLayout = function (type) {
 
 SEQController.isQuestionTextOverflow = function () {
   setTimeout(function () {
-    SEQController.isQuestionTextOverflow = function () {
-      if ($('.hiding-container').height() > $('.expand-container').height()) {
-          $('.expand-button').css('display', 'none');
-      } else {
-          $('.expand-button').css('display', 'block');
-      }
-  }  
+    if ($('.hiding-container').height() > $('.expand-container').height()) {
+        $('.expand-button').css('display', 'none');
+    } else {
+        $('.expand-button').css('display', 'block');
+    }
   }, 1000)
 }
 
