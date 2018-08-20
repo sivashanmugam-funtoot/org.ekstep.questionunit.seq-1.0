@@ -122,7 +122,7 @@ SEQController.onDomReady = function () {
 
 /**
  * image will be shown in popup
- * @memberof org.ekstep.questionunit.mtf.mtftemplate
+ * @memberof org.ekstep.questionunit.seq.seq-template
  */
 
 SEQController.hideImageModel = function () {

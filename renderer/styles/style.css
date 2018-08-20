@@ -57,6 +57,7 @@
   right: 9%;
   z-index: 2;
   cursor: pointer;
+  display:none;
 }
 
 .sequencing-content-container .question-container .expand-button img {
@@ -74,7 +75,7 @@
 .sequencing-content-container .option-container.vertical .option-block-container .option-block {
   cursor: move;
   width: 100%;
-  height: 22.3255813953%;
+  height: 13.2955813953vh;
   margin-bottom: 1.5625%;
   border-radius: 4px;
   background-color: #FFFFFF;
