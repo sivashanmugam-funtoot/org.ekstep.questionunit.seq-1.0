@@ -26,7 +26,7 @@ SEQController.initTemplate = function (pluginInstance) {
 SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
-  var wrapperStart = '<div onload="this = SEQController" class="sequencing-content-container question-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
+  var wrapperStart = '<div class="sequencing-content-container question-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
   var wrapperEnd = '</div><script>SEQController.pluginInstance.onDomReady();SEQController.onDomReady()</script>';
   var getLayout;
   if (availableLayout.horizontal == selectedLayout) {
