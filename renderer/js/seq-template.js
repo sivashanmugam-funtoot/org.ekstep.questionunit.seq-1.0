@@ -29,7 +29,7 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
   var wrapperStart = '<div  class="sequencing-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
   var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
   var getLayout;
-  if (availableLayout.horizontal == selectedLayout) {
+  if (availableLayout.vertical == selectedLayout) {
     getLayout = SEQController.getOptionLayout('horizontal');
   } else {
     getLayout = SEQController.getOptionLayout('vertical');
@@ -44,8 +44,18 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 SEQController.getQuestionStemTemplate = function () {
   return '\
   <div class="question-container">\
+  <% if(question.data.question.image || question.data.question.audio){ %> \
+      <div class="image-container">\
+      <% if(question.data.question.image){ %> \
+          <img onclick="SEQController.showImageModel(event, \'<%= question.data.question.image %>\')" class="q-image" src="<%= question.data.question.image %>" />\
+          <img onclick=SEQController.pluginInstance.playAudio({src:"<%= question.data.question.audio %>"}) class="audio" src="<%= SEQController.pluginInstance.getAudioIcon("renderer/assets/audio-icon.png") %>" />\
+      <% }else { %>\
+        <img onclick=SEQController.pluginInstance.playAudio({src:"<%= question.data.question.audio %>"}) class="audio no-q-image" src="<%= SEQController.pluginInstance.getAudioIcon("renderer/assets/audio-icon.png") %>" />\
+      <% } %>\
+      </div>\
+  <% } %>\
       <div class="hiding-container">\
-          <div class="expand-container">\
+          <div class="expand-container <% if(question.data.question.image || question.data.question.audio){ %> with-media <% } %>">\
           <%= question.data.question.text %>\
           </div>\
       </div>\
@@ -119,6 +129,26 @@ SEQController.onDomReady = function () {
     $(".option-block-container").disableSelection();
   })
 }
+
+/**
+ * image will be shown in popup
+ * @memberof org.ekstep.questionunit.seq.seq-template
+ */
+SEQController.showImageModel = function (event, imageSrc) {
+  if (imageSrc) {
+    var modelTemplate = "<div class='popup' id='image-model-popup' onclick='SEQController.hideImageModel()'><div class='popup-overlay' onclick='SEQController.hideImageModel()'></div> \
+  <div class='popup-full-body'> \
+  <div class='font-lato assess-popup assess-goodjob-popup'> \
+    <img class='qc-question-fullimage' src=<%= src %> /> \
+    <div onclick='SEQController.hideImageModel()' class='qc-popup-close-button'>&times;</div> \
+  </div></div>";
+    var template = _.template(modelTemplate);
+    var templateData = template({
+      src: imageSrc
+    })
+    $(SEQController.constant.qsSEQElement).append(templateData);
+  }
+},
 
 /**
  * image will be shown in popup
