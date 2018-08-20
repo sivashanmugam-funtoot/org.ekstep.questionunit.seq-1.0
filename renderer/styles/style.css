@@ -57,7 +57,7 @@
   right: 9%;
   z-index: 2;
   cursor: pointer;
-  display:none;
+  display: none;
 }
 
 .sequencing-content-container .question-container .expand-button img {
@@ -94,21 +94,29 @@
 }
 
 .sequencing-content-container .option-container.horizontal {
-  height: 59.7222222222%;
+  height: 82.299%;
   padding-top: 13.125%;
   padding-bottom: 7.1875%;
   padding-right: 13.75%;
   padding-left: 13.75%;
+  position: relative;
 }
+
 .sequencing-content-container .option-container.horizontal .option-block-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   justify-content: center;
   display: flex;
   align-items: center;
 }
+
 .sequencing-content-container .option-container.horizontal .option-block-container .option-block {
   cursor: move;
-  width: 13.3365813953vh;
-  height: 30.833333vh;
+  width: 17.62%;
+  height: 36.58%;
   margin-right: 2.25%;
   border-radius: 4px;
   background-color: #FFFFFF;
@@ -116,6 +124,7 @@
   position: relative;
   float: left;
 }
+
 .sequencing-content-container .option-container.horizontal .option-block-container .option-block span {
   position: absolute;
   top: 0;
@@ -126,6 +135,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .sequencing-content-container .option-container.horizontal .option-block:last-child {
   margin-right: 0%;
 }
