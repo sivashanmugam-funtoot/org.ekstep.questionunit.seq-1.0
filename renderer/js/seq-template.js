@@ -29,7 +29,7 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
   var wrapperStart = '<div  class="sequencing-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
   var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
   var getLayout;
-  if (availableLayout.horizontal == selectedLayout) {
+  if (availableLayout.vertical == selectedLayout) {
     getLayout = SEQController.getOptionLayout('horizontal');
   } else {
     getLayout = SEQController.getOptionLayout('vertical');
