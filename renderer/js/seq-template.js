@@ -27,14 +27,14 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
   var wrapperStart = '<div class="sequencing-content-container question-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
-  var wrapperEnd = '</div><script>SEQController.pluginInstance.onDomReady();SEQController.onDomReady()</script>';
+  var wrapperEnd = '</div><script>org.ekstep.contentrenderer.questionunitComponents.questionComponent.onDomReady();SEQController.onDomReady()</script>';
   var getLayout;
   if (availableLayout.horizontal == selectedLayout) {
     getLayout = SEQController.getOptionLayout('horizontal');
   } else {
     getLayout = SEQController.getOptionLayout('vertical');
   }
-  return wrapperStart + SEQController.pluginInstance.generateQuestionComponent() + getLayout + wrapperEnd;
+  return wrapperStart + org.ekstep.contentrenderer.questionunitComponents.questionComponent.generateQuestionComponent() + getLayout + wrapperEnd;
 }
 
 /**
