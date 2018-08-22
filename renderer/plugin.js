@@ -5,8 +5,8 @@
  * @extends org.ekstep.contentrenderer.questionUnitPlugin
  * @author Sivashanmugam Kannan <sivashanmugam.kannan@funtoot.com>
  */
-org.ekstep.questionunitmtf = {};
-org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionUnitPlugin.extend({
+org.ekstep.questionunitseq = {};
+org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionUnitPlugin.extend({
   _type: 'org.ekstep.questionunit.mtf',
   _isContainer: true,
   _render: true,

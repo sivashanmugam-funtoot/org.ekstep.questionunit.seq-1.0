@@ -14,7 +14,6 @@ SEQController.initTemplate = function (pluginInstance) {
   SEQController.pluginInstance = pluginInstance;
   SEQController.constant.bgColor = SEQController.constant.bgColors[_.random(0, SEQController.constant.bgColors.length - 1)];
   SEQController.bgLeftCircleTop = _.random(-6, 6) * 10;
-  window.QuestionUnitRendererController = SEQController;
 };
 
 /**
@@ -27,14 +26,14 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
   var wrapperStart = '<div class="sequencing-content-container question-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
-  var wrapperEnd = '</div><script>org.ekstep.contentrenderer.questionunitComponents.questionComponent.onDomReady();SEQController.onDomReady()</script>';
+  var wrapperEnd = '</div><script>org.ekstep.contentrenderer.questionunit.questionComponent.onDomReady();SEQController.onDomReady()</script>';
   var getLayout;
   if (availableLayout.horizontal == selectedLayout) {
     getLayout = SEQController.getOptionLayout('horizontal');
   } else {
     getLayout = SEQController.getOptionLayout('vertical');
   }
-  return wrapperStart + org.ekstep.contentrenderer.questionunitComponents.questionComponent.generateQuestionComponent() + getLayout + wrapperEnd;
+  return wrapperStart + org.ekstep.contentrenderer.questionunit.questionComponent.generateQuestionComponent(SEQController.pluginInstance._manifest.id) + getLayout + wrapperEnd;
 }
 
 /**
