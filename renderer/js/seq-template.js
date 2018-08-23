@@ -25,15 +25,17 @@ SEQController.initTemplate = function (pluginInstance) {
 SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
-  var wrapperStart = '<div class="sequencing-content-container question-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
-  var wrapperEnd = '</div><script>org.ekstep.contentrenderer.questionunit.questionComponent.onDomReady();SEQController.onDomReady()</script>';
+  var wrapperStart = '<div class="sequencing-content-container plugin-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
+  var wrapperStartQuestionComponent = '<div class="question-content-container">';
+  var wrapperEndQuestionComponent = '</div>';
+  var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
   var getLayout;
   if (availableLayout.horizontal == selectedLayout) {
     getLayout = SEQController.getOptionLayout('horizontal');
   } else {
     getLayout = SEQController.getOptionLayout('vertical');
   }
-  return wrapperStart + org.ekstep.contentrenderer.questionunit.questionComponent.generateQuestionComponent(SEQController.pluginInstance._manifest.id) + getLayout + wrapperEnd;
+  return wrapperStart + wrapperStartQuestionComponent + org.ekstep.questionunit.questionComponent.generateQuestionComponent(SEQController.pluginInstance._manifest.id) + wrapperEndQuestionComponent + getLayout + wrapperEnd;
 }
 
 /**
@@ -56,8 +58,8 @@ SEQController.getOptionLayout = function (type) {
 
 SEQController.onDomReady = function () {
   $(document).ready(function () {
-      $(".option-block-container").sortable();
-      $(".option-block-container").disableSelection();
+    $(".option-block-container").sortable();
+    $(".option-block-container").disableSelection();
   })
 }
 

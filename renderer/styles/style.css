@@ -11,7 +11,9 @@
   letter-spacing: 0.7px;
   background: linear-gradient(0deg, #B4D0F6 0%, #D0E2F5 100%);
 }
-
+.sequencing-content-container .question-content-container{
+  height:17.33333%;
+}
 .sequencing-content-container .option-container.vertical {
   height: 59.7222222222%;
   padding-top: 2.8125%;

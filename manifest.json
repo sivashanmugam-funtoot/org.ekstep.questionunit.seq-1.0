@@ -1,5 +1,5 @@
 {
-  "id": "org.ekstep.questionunit.mtf",
+  "id": "org.ekstep.questionunit.seq",
   "ver": "1.0",
   "author": "Sivashanmugam Kannan (sivashanmugam.kannan@funtoot.com)",
   "title": "Add question",
@@ -56,7 +56,7 @@
       "thumbnail": "editor/assets/sequencial-preview.png",
       "title": "Arrange in Sequence",
       "disc": "",
-      "category": "MTF",
+      "category": "SEQ",
       "editor": {
         "templateURL": "editor/templates/seq-template.html",
         "controllerURL": "editor/controllers/seq-controller.js",

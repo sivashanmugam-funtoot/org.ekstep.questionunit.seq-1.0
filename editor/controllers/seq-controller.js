@@ -46,9 +46,9 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
      * @event org.ekstep.questionunit.seq:validateform
      * @memberof org.ekstep.questionunit.seq.seq-controller
      */
-    $scope.seqPluginInstance = org.ekstep.pluginframework.pluginManager.getPluginManifest("org.ekstep.questionunit.mtf");
-    EventBus.listeners['org.ekstep.questionunit.mtf:validateform'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.mtf:validateform', function (event, callback) {
+    $scope.seqPluginInstance = org.ekstep.pluginframework.pluginManager.getPluginManifest("org.ekstep.questionunit.seq");
+    EventBus.listeners['org.ekstep.questionunit.seq:validateform'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.seq:validateform', function (event, callback) {
       var validationRes = $scope.formValidation();
       callback(validationRes.isValid, validationRes.formData);
     }, $scope);
@@ -57,8 +57,8 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
      * @event org.ekstep.questionunit.seq:editquestion
      * @memberof org.ekstep.questionunit.seq.seq-controller
      */
-    EventBus.listeners['org.ekstep.questionunit.mtf:editquestion'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.mtf:editquestion', $scope.editSEQQuestion, $scope);
+    EventBus.listeners['org.ekstep.questionunit.seq:editquestion'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.seq:editquestion', $scope.editSEQQuestion, $scope);
     ecEditor.dispatchEvent("org.ekstep.questionunit:ready");
 
     //adds two options
@@ -102,7 +102,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
       temp, tempArray = [],
       formValid;
     //check form valid and lhs should be more than 3
-    formValid = $scope.seqForm.$valid && $scope.seqFormData.options.length > 2;
+    formValid = $scope.seqForm.$valid && $scope.seqFormData.options.length > 1;
     if (!($scope.seqFormData.question.text.length || $scope.seqFormData.question.image.length || $scope.seqFormData.question.audio.length)) {
       $('.questionTextBox').addClass("ck-error");
     } else {

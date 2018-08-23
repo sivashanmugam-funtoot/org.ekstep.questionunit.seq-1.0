@@ -7,7 +7,7 @@
  */
 org.ekstep.questionunitseq = {};
 org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionUnitPlugin.extend({
-  _type: 'org.ekstep.questionunit.mtf',
+  _type: 'org.ekstep.questionunit.seq',
   _isContainer: true,
   _render: true,
   _selectedAnswers: [],
